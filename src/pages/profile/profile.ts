@@ -6,6 +6,7 @@ import { ClienteService } from '../../services/domain/cliente.service';
 import { API_CONFIG } from '../../Config/api.config';
 
 
+
 @IonicPage()
 @Component({
   selector: 'page-profile',
@@ -23,16 +24,25 @@ export class ProfilePage {
   }
 
   ionViewDidLoad() {
-    let localUser = this.storage.getLocaUser();
+    let localUser = this.storage.getLocalUser();
+    //console.log("Profile.ts -- Local User Email -->" + localUser.email);
+    //console.log("Profile.ts -- Local User Token -->" + localUser.token);
+
     if (localUser && localUser.email){
       this.clienteService.findByEmail(localUser.email)
       .subscribe(response => {
         this.cliente = response;
         this.getImageIfExists();
       },
-      error => {});
+      error => {
+        if (error.status == 403) {
+          this.navCtrl.setRoot('HomePage');
+        } 
+      });
     }
-
+    else {
+      this.navCtrl.setRoot('HomePage');    
+    }
   }
 
   getImageIfExists() {
