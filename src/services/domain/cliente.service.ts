@@ -13,12 +13,16 @@ export class ClienteService{
     }
 
     findByEmail(email: string) : Observable<ClienteDTO> {
+
+        //Como já está implementado no auth-interceptor não precisa colocar como abaixo
+        /* ----- INICIO --------------------------------------
         let token = this.storage.getLocaUser().token;
         let authHeader = new HttpHeaders({ 'Authorization': 'Bearer ' + token }); 
-
         return this.http.get<ClienteDTO>(
             `${API_CONFIG.baseUrl}/clientes/email?value=${email}`,
             {'headers':authHeader});
+        -------- FIM ----------------------------------------- */
+        return this.http.get<ClienteDTO>(`${API_CONFIG.baseUrl}/clientes/email?value=${email}`);
     }
 
     getImageFromBucket(id: String) : Observable<any> {
