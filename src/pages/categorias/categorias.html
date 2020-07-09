@@ -12,7 +12,6 @@
   <button ion-item *ngFor="let item of items" (click)="showProdutos(item.id)">
       <ion-thumbnail item-start>
         <img src="{{bucketUrl}}/cat{{item.id}}.jpg">
-        <!--<img src="https://curso-spring-ionic-rpcc.s3-sa-east-1.amazonaws.com/cat1.jpg">-->
       </ion-thumbnail>
       <h2>{{ item.nome }}</h2>
     </button>
