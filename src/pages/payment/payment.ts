@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { PeditoDTO } from '../../models/pedido.dto';
+import { PedidoDTO } from '../../models/pedido.dto';
 import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
 
 @IonicPage()
@@ -10,7 +10,7 @@ import { FormGroup, FormBuilder, Validator, Validators } from '@angular/forms';
 })
 export class PaymentPage {
 
-  pedido: PeditoDTO;
+  pedido: PedidoDTO;
 
   parcelas: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -32,7 +32,7 @@ export class PaymentPage {
 
   nextPage() {
     this.pedido.pagamento = this.formGroup.value;
-    console.log(this.pedido);
+    this.navCtrl.setRoot('OrderConfirmationPage', {pedido: this.pedido});
   }
 
 
